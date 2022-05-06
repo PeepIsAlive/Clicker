@@ -13,9 +13,12 @@ public class ValueText : MonoBehaviour
         if (_gameController != null)
         {
             _bankRepository = _gameController.RepositoriesBase.GetRepository<BankRepository>();
-        }
 
-        _valueText = GetComponent<Text>();
+            if (_bankRepository != null)
+            {
+                _valueText = GetComponent<Text>();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -25,6 +28,8 @@ public class ValueText : MonoBehaviour
 
     private void SetValue()
     {
+        if (_valueText == null) { return; }
+
         _valueText.text = _bankRepository.ToString();
     }
 }

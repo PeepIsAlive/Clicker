@@ -1,5 +1,6 @@
 public abstract class Repository
 {
     public abstract void Initialize();
-    protected abstract void Save();
+    protected virtual void Save() { }
+    protected virtual void Save(string key, int value) { }
 }
