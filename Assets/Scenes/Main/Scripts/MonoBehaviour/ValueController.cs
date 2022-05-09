@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ValueText : MonoBehaviour
+public class ValueController : MonoBehaviour
 {
     private Text _valueText;
     private BankRepository _bankRepository;
 
-    private void Awake()
+    public void Initialize()
     {
         GameController _gameController = GetComponentInParent<GameController>();
 
@@ -19,6 +19,11 @@ public class ValueText : MonoBehaviour
                 _valueText = GetComponent<Text>();
             }
         }
+    }
+
+    public void OnStart()
+    {
+        SetValue();
     }
 
     private void FixedUpdate()

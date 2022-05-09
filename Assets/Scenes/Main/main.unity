@@ -281,7 +281,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7888853225926144896, guid: df622fc0c9a63b04f9a6d2b3677064e6, type: 3}
       propertyPath: m_Name
-      value: INTERFACE
+      value: Interface
       objectReference: {fileID: 0}
     - target: {fileID: 7888853225926144900, guid: df622fc0c9a63b04f9a6d2b3677064e6, type: 3}
       propertyPath: m_Pivot.x
