@@ -6,12 +6,14 @@ public class AchiviementsController : MonoBehaviour
     [SerializeField] private GameObject _achiviementTemplate;
     [SerializeField] private GameObject _content;
     [SerializeField] private Achiviement[] _achiviementsArray;
+    private Animator _animator;
 
     public void Initialize()
     {
         if (_content != null)
         {
             RectTransform rectTransform = _content.GetComponent<RectTransform>();
+            _animator = GetComponent<Animator>();
             rectTransform.transform.localPosition = Vector3.zero;
         }
     }
@@ -19,6 +21,26 @@ public class AchiviementsController : MonoBehaviour
     public void OnStart()
     {
         SetAchiviements();
+    }
+
+    public void Open()
+    {
+        if (_animator == null) { return; }
+
+        _animator.enabled = true;
+        _animator.SetTrigger("Open");
+    }
+
+    public void Close()
+    {
+        if (_animator == null) { return; }
+
+        _animator.SetTrigger("Close");
+    }
+
+    public void OnClose()
+    {
+        _animator.enabled = false;
     }
 
     private void SetAchiviements()
