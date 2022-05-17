@@ -364,14 +364,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1432921842}
     m_Modifications:
-    - target: {fileID: 489676444490643852, guid: c63cc98e7debad8479494bf338f8e951, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489676444490643852, guid: c63cc98e7debad8479494bf338f8e951, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 489676444958708236, guid: c63cc98e7debad8479494bf338f8e951, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -494,14 +486,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 489676445320390661, guid: c63cc98e7debad8479494bf338f8e951, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489676445327261340, guid: c63cc98e7debad8479494bf338f8e951, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489676445327261340, guid: c63cc98e7debad8479494bf338f8e951, type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
