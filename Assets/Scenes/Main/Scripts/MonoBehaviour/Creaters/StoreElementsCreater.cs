@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StoreElementsCreater : ScrollViewElementsCreater
 {
@@ -19,9 +20,9 @@ public class StoreElementsCreater : ScrollViewElementsCreater
         {
             GameObject storeElementObject = Instantiate(base.template, base.content.transform);
 
-            //storeElementObject.transform.GetChild(0).GetComponent<Image>().sprite = storeElement.Image;
-            //storeElementObject.transform.GetChild(1).GetComponent<Text>().text = storeElement.Name;
-            //storeElementObject.transform.GetChild(2).GetComponent<Text>().text = storeElement.Description;
+            storeElementObject.transform.GetChild(0).GetComponent<Image>().sprite = storeElement.Image;
+            storeElementObject.transform.GetChild(1).GetComponent<Text>().text = storeElement.Name;
+            storeElementObject.transform.GetChild(2).GetComponent<Text>().text = storeElement.Description;
         }
     }
 }

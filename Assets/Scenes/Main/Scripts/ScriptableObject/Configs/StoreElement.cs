@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "New store element", menuName = "Config/StoreElement", order = 52)]
 public class StoreElement : ScriptableObject
 {
     [SerializeField] private string _name;

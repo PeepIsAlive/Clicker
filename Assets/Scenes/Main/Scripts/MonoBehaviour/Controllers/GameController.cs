@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     private DisplayValueUpdater _displayValueUpdater;
     private OfflineTimeController _offlineTimeController;
     private AchiviementsCreater _achiviementsCreater;
+    private StoreElementsCreater _storeElementsCreater;
 
     public InteractorsBase InteractorsBase => _interactorsBase;
     public RepositoriesBase RepositoriesBase => _repositoriesBase;
@@ -58,11 +59,13 @@ public class GameController : MonoBehaviour
         _moneyController = GetComponentInChildren<MoneyController>();
         _displayValueUpdater = GetComponentInChildren<DisplayValueUpdater>();
         _achiviementsCreater = GetComponentInChildren<AchiviementsCreater>();
+        _storeElementsCreater = GetComponentInChildren<StoreElementsCreater>();
         _offlineTimeController = GetComponentInChildren<OfflineTimeController>();
 
         _moneyController.Initialize();
         _displayValueUpdater.Initialize();
         _achiviementsCreater.Initialize();
+        _storeElementsCreater.Initialize();
     }
 
     private void ControllersOnStart()
@@ -71,6 +74,7 @@ public class GameController : MonoBehaviour
         _moneyController.OnStart(_offlineTimeController.ValueForOfflineTime);
         _displayValueUpdater.OnStart();
         _achiviementsCreater.OnStart();
+        _storeElementsCreater.OnStart();
     }
 
 #if UNITY_ANDROID && !UNITY_EDITOR

@@ -660,13 +660,14 @@ GameObject:
   - component: {fileID: 489676444986818418}
   - component: {fileID: 489676445436646924}
   - component: {fileID: 908342148}
+  - component: {fileID: 4383087484089414406}
   m_Layer: 5
   m_Name: Store
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &489676444986818421
 RectTransform:
   m_ObjectHideFlags: 0
@@ -770,6 +771,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 489676445320390660}
+--- !u!114 &4383087484089414406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489676444986818417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06729e98d4172a649bb90384b2c181ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _template: {fileID: 1978276290596943998, guid: 84ec8d1c8b719fa4e8b59a2a4f82abd5, type: 3}
+  _content: {fileID: 489676444757553957}
+  _storeElementsArray:
+  - {fileID: 11400000, guid: bc83980f5b7bcf648b88837a8c05c312, type: 2}
+  - {fileID: 11400000, guid: 332c0e7894b5cdd4ea8d49b78b5ddad0, type: 2}
+  - {fileID: 11400000, guid: c45b4f24943babf4aa7f9dc25e1fa8d7, type: 2}
 --- !u!1 &489676445253341557
 GameObject:
   m_ObjectHideFlags: 0
