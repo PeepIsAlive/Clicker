@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FourthAchiviement
   m_EditorClassIdentifier: 
   _name: Fourth Achiviement
-  _description: This is fourth achiviement
+  _description: This is a fourth achiviement
   _image: {fileID: 0}

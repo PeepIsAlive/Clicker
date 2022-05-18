@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa18163117f198742a2049de94017188, type: 3}
   m_Name: ThirdStoreElement
   m_EditorClassIdentifier: 
+  _id: 3
   _name: Third store element
   _description: This is third store element
   _image: {fileID: 0}
