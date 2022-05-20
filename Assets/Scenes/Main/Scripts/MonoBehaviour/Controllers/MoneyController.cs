@@ -5,6 +5,7 @@ public class MoneyController : MonoBehaviour
 {
     [SerializeField] private int _valuePerSeconds;
     [SerializeField] private int _clickValue;
+    [SerializeField] private ParticleSystem _onClickVFX;
     private BankInteractor _bankInteractor;
 
     public int ValuePerSeconds => _valuePerSeconds;
@@ -25,11 +26,19 @@ public class MoneyController : MonoBehaviour
         StartCoroutine(AdditionValuePerSeconds());
     }
 
-    public void Click()
+    public void OnClick()
     {
         if (_bankInteractor == null) { return; }
 
         AdditionMoney(_clickValue);
+
+        if (_onClickVFX != null)
+        {
+            if (_onClickVFX.isStopped)
+            {
+                _onClickVFX.Play();
+            }
+        }
     }
 
     public void AdditionMoney(int value)
