@@ -6,7 +6,8 @@ public class MoneyController : MonoBehaviour
     [SerializeField] private int _valuePerSeconds;
     [SerializeField] private int _clickValue;
     [SerializeField] private ParticleSystem _onClickVFX;
-    private BankInteractor _bankInteractor;
+    [SerializeField] private DisplayValueUpdater _updater;
+    private BankInteractor _interactor;
 
     public int ValuePerSeconds => _valuePerSeconds;
 
@@ -16,21 +17,25 @@ public class MoneyController : MonoBehaviour
 
         if (_gameController != null)
         {
-            _bankInteractor = _gameController.InteractorsBase.GetInteractor<BankInteractor>();
+            _interactor = _gameController.InteractorsBase.GetInteractor<BankInteractor>();
         }
+
+        _updater.Initialize();
     }
 
     public void OnStart(int valueForOfflineTime)
     {
         AdditionMoney(valueForOfflineTime);
+        _updater.SetValue();
         StartCoroutine(AdditionValuePerSeconds());
     }
 
     public void OnClick()
     {
-        if (_bankInteractor == null) { return; }
+        if (_interactor == null) { return; }
 
         AdditionMoney(_clickValue);
+        _updater.SetValue();
 
         if (_onClickVFX != null)
         {
@@ -43,13 +48,14 @@ public class MoneyController : MonoBehaviour
 
     public void AdditionMoney(int value)
     {
-        _bankInteractor.Addition(value);
+        _interactor.Addition(value);
     }
 
     private IEnumerator AdditionValuePerSeconds()
     {
         yield return new WaitForSeconds(1f);
         AdditionMoney(_valuePerSeconds);
+        _updater.SetValue();
         yield return StartCoroutine(AdditionValuePerSeconds());
     }
 }

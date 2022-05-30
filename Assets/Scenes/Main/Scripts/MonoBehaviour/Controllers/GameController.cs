@@ -2,17 +2,13 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private InteractorsBase _interactorsBase;
-    private RepositoriesBase _repositoriesBase;
-
     private MoneyController _moneyController;
-    private DisplayValueUpdater _displayValueUpdater;
     private OfflineTimeController _offlineTimeController;
     private AchiviementsCreater _achiviementsCreater;
     private StoreElementsCreater _storeElementsCreater;
 
-    public InteractorsBase InteractorsBase => _interactorsBase;
-    public RepositoriesBase RepositoriesBase => _repositoriesBase;
+    public InteractorsBase InteractorsBase { get; private set; }
+    public RepositoriesBase RepositoriesBase { get; private set; }
 
     private void Awake()
     {
@@ -29,41 +25,40 @@ public class GameController : MonoBehaviour
 
     private bool InteractorsInitialize()
     {
-        _interactorsBase = new InteractorsBase();
+        InteractorsBase = new InteractorsBase();
 
-        if (_interactorsBase != null)
+        if (InteractorsBase != null)
         {
-            _interactorsBase.CreateInteractors();
-            _interactorsBase.InitializeInteractors();
+            InteractorsBase.CreateInteractors();
+            InteractorsBase.InitializeInteractors();
         }
 
-        return (_interactorsBase != null) ? true : false;
+        return (InteractorsBase != null) ? true : false;
     }
 
     private bool RepositoriesInitialize()
     {
-        if (_interactorsBase == null) { return false; }
+        if (InteractorsBase == null) { return false; }
 
-        _repositoriesBase = new RepositoriesBase();
+        RepositoriesBase = new RepositoriesBase();
 
-        if (_repositoriesBase != null)
+        if (RepositoriesBase != null)
         {
-            _repositoriesBase.AddRepository<BankRepository>(_interactorsBase.GetInteractor<BankInteractor>());
+            RepositoriesBase.AddRepository<BankRepository>(InteractorsBase.GetInteractor<BankInteractor>());
+            RepositoriesBase.AddRepository<AchiviementsRepository>(InteractorsBase.GetInteractor<AchiviementsInteractor>());
         }
 
-        return (_repositoriesBase != null) ? true : false;
+        return (RepositoriesBase != null) ? true : false;
     }
 
     private void ControllersInitialize()
     {
         _moneyController = GetComponentInChildren<MoneyController>();
-        _displayValueUpdater = GetComponentInChildren<DisplayValueUpdater>();
         _achiviementsCreater = GetComponentInChildren<AchiviementsCreater>();
         _storeElementsCreater = GetComponentInChildren<StoreElementsCreater>();
         _offlineTimeController = GetComponentInChildren<OfflineTimeController>();
 
         _moneyController.Initialize();
-        _displayValueUpdater.Initialize();
         _achiviementsCreater.Initialize();
         _storeElementsCreater.Initialize();
     }
@@ -72,7 +67,6 @@ public class GameController : MonoBehaviour
     {
         _offlineTimeController.OnStart(_moneyController.ValuePerSeconds);
         _moneyController.OnStart(_offlineTimeController.ValueForOfflineTime);
-        _displayValueUpdater.OnStart();
         _achiviementsCreater.OnStart();
         _storeElementsCreater.OnStart();
     }

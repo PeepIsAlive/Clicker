@@ -16,8 +16,6 @@ public class RepositoriesBase
 
     public void AddRepository<T>(Interactor interactor) where T : Repository
     {
-        if (_repositoriesDict == null) { return; }
-
         var repository = interactor.Repository;
         var type = typeof(T);
 

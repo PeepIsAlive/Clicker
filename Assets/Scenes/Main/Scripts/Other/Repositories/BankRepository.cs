@@ -2,30 +2,28 @@ using UnityEngine;
 
 public class BankRepository : Repository
 {
-    private const string Key = "Money";
-    private const string KeyTotal = "TotalMoney";
+    private const string key = "Money";
+    private const string keyTotal = "TotalMoney";
 
-    public int MoneyAmount { get; private set; }
-    public int TotalMoneyAmount { get; private set; }
+    public static int MoneyAmount { get; private set; }
+    public static int TotalMoneyAmount { get; private set; }
 
     public void SetValue(int value)
     {
         MoneyAmount = value;
-        Save(Key, MoneyAmount);
+        Save(key, MoneyAmount);
     }
 
     public void IncreaseTotalMoney(int value)
     {
         TotalMoneyAmount += value;
-        Save(KeyTotal, TotalMoneyAmount);
+        Save(keyTotal, TotalMoneyAmount);
     }
-
-    public override string ToString() => MoneyAmount.ToString() + "$";
 
     public override void Initialize()
     {
-        TotalMoneyAmount = PlayerPrefs.GetInt(KeyTotal);
-        MoneyAmount = PlayerPrefs.GetInt(Key);
+        TotalMoneyAmount = PlayerPrefs.GetInt(keyTotal);
+        MoneyAmount = PlayerPrefs.GetInt(key);
     }
 
     protected override void Save(string key, int value)

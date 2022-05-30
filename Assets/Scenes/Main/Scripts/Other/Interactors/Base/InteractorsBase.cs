@@ -16,9 +16,8 @@ public class InteractorsBase
 
     public void CreateInteractors()
     {
-        if (_interactorsDict == null) { return; }
-
         CreateInteractor<BankInteractor>();
+        CreateInteractor<AchiviementsInteractor>();
     }
 
     public void InitializeInteractors()

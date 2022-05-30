@@ -638,8 +638,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _valuePerSeconds: 1
-  _clickValue: 5
+  _clickValue: 1
   _onClickVFX: {fileID: 0}
+  _updater: {fileID: 0}
 --- !u!114 &1042401053
 MonoBehaviour:
   m_ObjectHideFlags: 0

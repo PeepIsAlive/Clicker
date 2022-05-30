@@ -3,7 +3,7 @@ public class BankInteractor : Interactor
     private BankRepository _repository;
 
     public override Repository Repository => _repository;
-    public int MoneyAmount { get; private set; }
+    public static int MoneyAmount { get; private set; }
 
     public override Repository Initialize()
     {
@@ -12,7 +12,8 @@ public class BankInteractor : Interactor
         if (_repository != null)
         {
             _repository.Initialize();
-            MoneyAmount = _repository.MoneyAmount;
+
+            MoneyAmount = BankRepository.MoneyAmount;
         }
 
         return _repository;

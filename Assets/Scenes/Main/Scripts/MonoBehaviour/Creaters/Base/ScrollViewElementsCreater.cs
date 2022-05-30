@@ -8,7 +8,7 @@ public abstract class ScrollViewElementsCreater : MonoBehaviour
     protected GameObject template => _template;
     protected GameObject content => _content;
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         if (_content != null)
         {
