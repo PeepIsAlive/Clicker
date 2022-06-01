@@ -635,6 +635,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: DynamicInterface
       objectReference: {fileID: 0}
+    - target: {fileID: 6726101657549674084, guid: cb423783acfff2f499b569dade0040d7, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726101657549674084, guid: cb423783acfff2f499b569dade0040d7, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726101657549674084, guid: cb423783acfff2f499b569dade0040d7, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb423783acfff2f499b569dade0040d7, type: 3}
 --- !u!1001 &7888853226013776995

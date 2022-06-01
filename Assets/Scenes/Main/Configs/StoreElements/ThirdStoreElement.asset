@@ -16,4 +16,4 @@ MonoBehaviour:
   _name: Third store element
   _description: This is third store element
   _image: {fileID: 0}
-  _price: 0
+  _price: 1000

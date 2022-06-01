@@ -40,17 +40,13 @@ public class AchiviementsCreater : ScrollViewElementsCreater
 
                 if (achiviementObject != null)
                 {
+                    int index = i;
                     achiviementObject.transform.GetChild(0).GetComponent<Image>().sprite = _achiviementsArray[i].Image;
                     achiviementObject.transform.GetChild(1).GetComponent<Text>().text = _achiviementsArray[i].Name;
                     achiviementObject.transform.GetChild(2).GetComponent<Text>().text = _achiviementsArray[i].Description;
-                }
-
-                if (achiviementButton != null)
-                {
-                    int index = i;
-
+                    
                     DisableUselessComponents(achiviementImage, achiviementButton);
-                    StartCoroutine(IsAvailableAchRoutine(_achiviementsArray[index],achiviementImage, achiviementButton));
+                    StartCoroutine(IsAvailableAchRoutine(_achiviementsArray[index], achiviementImage, achiviementButton));
 
                     achiviementButton.onClick.AddListener(() =>
                     {
@@ -62,10 +58,8 @@ public class AchiviementsCreater : ScrollViewElementsCreater
         }
     }
 
-    private IEnumerator IsAvailableAchRoutine(Achiviement achiviement ,Image achiviementImage, Button achiviementButton)
+    private IEnumerator IsAvailableAchRoutine(Achiviement achiviement, Image achiviementImage, Button achiviementButton)
     {
-        yield return new WaitForSeconds(5f);
-
         if (achiviement.Value < BankRepository.TotalMoneyAmount)
         {
             EnableNecessaryComponents(achiviementImage, achiviementButton);
@@ -73,19 +67,8 @@ public class AchiviementsCreater : ScrollViewElementsCreater
         }
         else
         {
+            yield return new WaitForSeconds(availableCheckDelay);
             yield return StartCoroutine(IsAvailableAchRoutine(achiviement, achiviementImage, achiviementButton));
         }
-    }
-
-    private void DisableUselessComponents(Image achiviementImage, Button achiviementButton)
-    {
-        achiviementImage.raycastTarget = false;
-        achiviementButton.interactable = false;
-    }
-
-    private void EnableNecessaryComponents(Image achiviementImage, Button achiviementButton)
-    {
-        achiviementImage.raycastTarget = true;
-        achiviementButton.interactable = true;
     }
 }

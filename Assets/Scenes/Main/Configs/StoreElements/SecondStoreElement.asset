@@ -16,4 +16,4 @@ MonoBehaviour:
   _name: Second store element
   _description: This is second store element
   _image: {fileID: 0}
-  _price: 0
+  _price: 500

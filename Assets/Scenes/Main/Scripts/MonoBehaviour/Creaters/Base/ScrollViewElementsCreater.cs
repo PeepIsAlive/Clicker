@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class ScrollViewElementsCreater : MonoBehaviour
 {
     [SerializeField] private GameObject _template;
     [SerializeField] private GameObject _content;
+    protected const float availableCheckDelay = 5f;
 
     protected GameObject template => _template;
     protected GameObject content => _content;
@@ -40,5 +42,16 @@ public abstract class ScrollViewElementsCreater : MonoBehaviour
         contentRectTransform.sizeDelta = contentSize;
         Destroy(example);
     }
+    
+    protected void DisableUselessComponents(Image image, Button button)
+    {
+        image.raycastTarget = false;
+        button.interactable = false;
+    }
 
+    protected void EnableNecessaryComponents(Image image, Button button)
+    {
+        image.raycastTarget = true;
+        button.interactable = true;
+    }
 }
