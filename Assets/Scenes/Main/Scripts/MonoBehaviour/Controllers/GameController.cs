@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour
 
     private void ControllersOnStart()
     {
-        _offlineTimeController.OnStart(_moneyController.ValuePerSeconds);
+        _offlineTimeController.OnStart(BankRepository.MoneyAmountPerSecond);
         _moneyController.OnStart(_offlineTimeController.ValueForOfflineTime);
         _achiviementsCreater.OnStart();
         _storeElementsCreater.OnStart();
@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            _offlineTimeController.OnStart(_moneyController.ValuePerSeconds);
+            _offlineTimeController.OnStart(_moneyController.MoneyPerSecond);
             _moneyController.AdditionMoney(_offlineTimeController.ValueForOfflineTime);
         }
     }

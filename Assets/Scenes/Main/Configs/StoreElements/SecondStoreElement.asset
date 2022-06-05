@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa18163117f198742a2049de94017188, type: 3}
   m_Name: SecondStoreElement
   m_EditorClassIdentifier: 
-  _id: 2
-  _name: Second store element
-  _description: This is second store element
   _image: {fileID: 0}
+  _name: Second store element
+  _description: 'Price: 500;        Click value: +1;  Value per second: +5;'
   _price: 500
+  _addedClickValue: 1
+  _addedValuePerSecond: 5

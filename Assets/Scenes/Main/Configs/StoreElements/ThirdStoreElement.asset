@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa18163117f198742a2049de94017188, type: 3}
   m_Name: ThirdStoreElement
   m_EditorClassIdentifier: 
-  _id: 3
-  _name: Third store element
-  _description: This is third store element
   _image: {fileID: 0}
+  _name: Third store element
+  _description: 'Price: 1000;        Click value: +10;  Value per second: +3;'
   _price: 1000
+  _addedClickValue: 10
+  _addedValuePerSecond: 3

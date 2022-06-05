@@ -3,7 +3,7 @@ public class BankInteractor : Interactor
     private BankRepository _repository;
 
     public override Repository Repository => _repository;
-    public static int MoneyAmount { get; private set; }
+    private int _moneyAmount;
 
     public override Repository Initialize()
     {
@@ -13,28 +13,42 @@ public class BankInteractor : Interactor
         {
             _repository.Initialize();
 
-            MoneyAmount = BankRepository.MoneyAmount;
+            _moneyAmount = BankRepository.MoneyAmount;
         }
 
         return _repository;
     }
 
-    public void Addition(int value)
+    public void AdditionMoney(int value)
     {
         if (value <= 0) { return; }
 
-        MoneyAmount += value;
+        _moneyAmount += value;
 
         _repository.IncreaseTotalMoney(value);
-        _repository.SetValue(MoneyAmount);
+        _repository.SetMoneyAmount(_moneyAmount);
     }
 
-    public void Substraction(int value)
+    public void SubstractionMoney(int value)
     {
         if (value <= 0) { return; }
 
-        MoneyAmount -= value;
+        _moneyAmount -= value;
 
-        _repository.SetValue(MoneyAmount);
+        _repository.SetMoneyAmount(_moneyAmount);
+    }
+    
+    public void IncreaseMoneyAmountByClick(int value)
+    {
+        if (value <= 0) { return; }
+
+        _repository.IncreaseMoneyAmountByClick(value);
+    }
+
+    public void IncreaseMoneyAmountPerSecond(int value)
+    {
+        if (value <= 0) { return; }
+
+        _repository.IncreaseMoneyAmountPerSecond(value);
     }
 }

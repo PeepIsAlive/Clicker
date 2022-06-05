@@ -10,10 +10,10 @@ public class DisplayValueUpdater : MonoBehaviour
         _valueText = GetComponent<Text>();
     }
 
-    public void SetValue()
+    public void SetValue(int value, string postScript)
     {
         if (_valueText == null) { return; }
 
-        _valueText.text = BankRepository.MoneyAmount.ToString() + "$";
+        _valueText.text = postScript + value.ToString();
     }
 }

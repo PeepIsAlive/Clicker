@@ -1,15 +1,13 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class MoneyController : MonoBehaviour
 {
-    [SerializeField] private int _valuePerSeconds;
-    [SerializeField] private int _clickValue;
     [SerializeField] private ParticleSystem _onClickVFX;
-    [SerializeField] private DisplayValueUpdater _updater;
+    [SerializeField] private DisplayValueUpdater _moneyAmountUpdater;
+    [SerializeField] private DisplayValueUpdater _moneyPerSecondUpdater;
     private BankInteractor _interactor;
-
-    public int ValuePerSeconds => _valuePerSeconds;
 
     public void Initialize()
     {
@@ -20,22 +18,22 @@ public class MoneyController : MonoBehaviour
             _interactor = _gameController.InteractorsBase.GetInteractor<BankInteractor>();
         }
 
-        _updater.Initialize();
+        _moneyAmountUpdater.Initialize();
+        _moneyPerSecondUpdater.Initialize();
     }
 
     public void OnStart(int valueForOfflineTime)
     {
         AdditionMoney(valueForOfflineTime);
-        _updater.SetValue();
-        StartCoroutine(AdditionValuePerSeconds());
+        StartCoroutine(AdditionValuePerSecond());
+        PrintToDisplayMoneyState();
     }
 
     public void OnClick()
     {
         if (_interactor == null) { return; }
 
-        AdditionMoney(_clickValue);
-        _updater.SetValue();
+        AdditionMoney(BankRepository.MoneyAmountByClick);
 
         if (_onClickVFX != null)
         {
@@ -46,16 +44,61 @@ public class MoneyController : MonoBehaviour
         }
     }
 
-    public void AdditionMoney(int value)
+    public void AdditionValuePerSecond(int value)
     {
-        _interactor.Addition(value);
+        if (_interactor == null || value <= 0) { return; }
+
+        _interactor.IncreaseMoneyAmountPerSecond(value);
+
+        if (_moneyPerSecondUpdater != null)
+        {
+            _moneyPerSecondUpdater.SetValue(BankRepository.MoneyAmountPerSecond, "+");
+        }
     }
 
-    private IEnumerator AdditionValuePerSeconds()
+    public void AdditionClickValue(int value)
+    {
+        if (_interactor == null || value <= 0) { return; }
+
+        _interactor.IncreaseMoneyAmountByClick(value);
+    }
+
+    public void SubstractionMoney(int value)
+    {
+        if (_interactor == null || value <= 0) { return; }
+
+        _interactor.SubstractionMoney(value);
+
+        if (_moneyAmountUpdater != null)
+        {
+            _moneyAmountUpdater.SetValue(BankRepository.MoneyAmount, "");
+        }
+    }
+
+    public void AdditionMoney(int value)
+    {
+        if (_interactor == null || value <= 0) { return; }
+
+        _interactor.AdditionMoney(value);
+
+        if (_moneyAmountUpdater != null)
+        {
+            _moneyAmountUpdater.SetValue(BankRepository.MoneyAmount, "");
+        }
+    }
+
+    private IEnumerator AdditionValuePerSecond()
     {
         yield return new WaitForSeconds(1f);
-        AdditionMoney(_valuePerSeconds);
-        _updater.SetValue();
-        yield return StartCoroutine(AdditionValuePerSeconds());
+        AdditionMoney(BankRepository.MoneyAmountPerSecond);
+        yield return StartCoroutine(AdditionValuePerSecond());
+    }
+
+    private void PrintToDisplayMoneyState()
+    {
+        if (_moneyPerSecondUpdater != null)
+        {
+            _moneyPerSecondUpdater.SetValue(BankRepository.MoneyAmountPerSecond, "+");
+        }
     }
 }

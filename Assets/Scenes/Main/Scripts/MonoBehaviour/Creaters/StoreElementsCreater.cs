@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class StoreElementsCreater : ScrollViewElementsCreater
 {
     [SerializeField] private StoreElement[] _storeElementsArray;
+    [SerializeField] private MoneyController _moneyController;
 
     public override void OnStart()
     {
@@ -20,10 +21,11 @@ public class StoreElementsCreater : ScrollViewElementsCreater
         for(int i = 0; i < _storeElementsArray.Length; i++)
         {
             GameObject storeElementObject = Instantiate(base.template, base.content.transform);
-            Button storeElementButton = storeElementObject.transform.GetChild(3).GetComponent<Button>();
-            Image storeElementImage = storeElementObject.transform.GetChild(3).GetComponent<Image>();
+            Button storeElementButton = storeElementObject.GetComponent<Button>();
+            Image storeElementImage = storeElementObject.GetComponent<Image>();
 
-            if (storeElementObject != null) {
+            if (storeElementObject != null)
+            {
                 int index = i;
                 storeElementObject.transform.GetChild(0).GetComponent<Image>().sprite = _storeElementsArray[index].Image;
                 storeElementObject.transform.GetChild(1).GetComponent<Text>().text = _storeElementsArray[index].Name;
@@ -34,7 +36,12 @@ public class StoreElementsCreater : ScrollViewElementsCreater
 
                 storeElementButton.onClick.AddListener(() =>
                 {
-                    DisableUselessComponents(storeElementImage, storeElementButton);
+                    if (_moneyController != null)
+                    {
+                        _moneyController.SubstractionMoney(_storeElementsArray[index].Price);
+                        _moneyController.AdditionValuePerSecond(_storeElementsArray[index].AddedValuePerSecond);
+                        _moneyController.AdditionClickValue(_storeElementsArray[index].AddedClickValue);
+                    }
                 });
             }
         }
@@ -45,12 +52,13 @@ public class StoreElementsCreater : ScrollViewElementsCreater
         if (storeElement.Price < BankRepository.MoneyAmount)
         {
             EnableNecessaryComponents(elemImage, elemButton);
-            yield break;
         }
         else
         {
-            yield return new WaitForSeconds(availableCheckDelay);
-            yield return StartCoroutine(IsAvailableElemRoutine(storeElement, elemImage, elemButton));
+            DisableUselessComponents(elemImage, elemButton);
         }
+
+        yield return new WaitForSeconds(availableCheckDelay);
+        yield return StartCoroutine(IsAvailableElemRoutine(storeElement, elemImage, elemButton));
     }
 }
